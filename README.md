@@ -87,3 +87,6 @@ GitHubのPRで表示されている差分は`git diff branch-C...branch-A`の方
   - 異なる変更を加えた場合は、片側にだけ変更があるようにPRでは表示される。コンフリクトする(それはそう)
   - ↑のどちらも差分は同じように見える。
 - 自動PRなどで両方のブランチに同じ変更を加えたあとにPRを作っても差分が表示されるのはこのため。
+
+### 参考
+- [GitHubのプルリクエストの差分はどこと比較しているか？(git diffの&quot;..&quot;と&quot;...&quot;の違い) - Qiita](https://qiita.com/m-yamazaki/items/e57e357116e95ae370dc)
