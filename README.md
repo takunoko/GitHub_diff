@@ -1,22 +1,24 @@
 # GitHubのPRで表示されるdiffについてテスト
 
 ## 要約
-- GitHubの`ブランチB->ブランチA`のPRで表示される差分は`B`と`BとAのmerge-base`との差分
+- GitHubの`ブランチB->ブランチA`のPRで表示される差分は`B`と`BとAのmerge-base`(共通の先祖)からの差分
   - `B`と`A`の最新コミットとの差分 **ではない**
-  - `git diff A..B`ではなく、`git diff A...B`の差分がGitHubのPRでは表示される
+  - `git diff A..B`ではなく、`git diff A...B`の差分がGitHubのPRでは表示
 
 ## 試してみる
-### ブランチを2つ(A,B)用意して、それぞれで **おなじ** 変更を加える
+### ブランチを2つ(A,B)用意して、それぞれで"おなじ"変更を加える
 ```
 A: --1--2
 B:    \_3
-(2,3の時点で同じ変更をする)
+(2,3の時点で同じ変更)
 ```
 
 ### B -> A のPRを出す。差分を確認
-差分: https://github.com/takunoko/GitHub_diff/pull/1/files
+PR差分: https://github.com/takunoko/GitHub_diff/pull/1/files
+- [Aのtest.txt](https://github.com/takunoko/GitHub_diff/blob/branch-B/test.txt)
+- [Bのtest.txt](https://github.com/takunoko/GitHub_diff/blob/branch-A/test.txt)
 
-=> AとBの最新コミットの比較なら差分が出ないはずだが差分が出ている。
+=> AとBの最新コミットの比較なら差分が出ないはずだが差分が出る
 
 ### 差分
 ```
@@ -36,6 +38,7 @@ index 7951742..520f3b8 100644
 $
 ```
 `git diff branch-B branch-A`と`git diff branch-B..branch-A`は同じ
+GitHubのPRで表示されている差分は`git diff branch-B...branch-A`の結果
 
 ## 異なる差分を加える
 ### ブランチCを作成して、異なる変更を同じ部分に加える
